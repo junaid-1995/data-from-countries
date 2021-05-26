@@ -23,13 +23,31 @@ const handleChange = (event) => {
 const countriesToShow = countries.filter(country => country.name.toLowerCase().includes(search.toLowerCase()))
 console.log(countriesToShow)
 
+
+
+if(countriesToShow.length <= 20) {
+
+
   return (
     <div>
       Search Country: <input value={search} name="search" onChange={handleChange} />
-      {countriesToShow.map(country => { return country.name})}
-      {countriesToShow.map(country => {return country.capital})}
+      {countriesToShow.map(country => { return <li>{country.name}</li>})}
+      
     </div>
   );
+} else if(countriesToShow.length === 1) {
+  return (
+    <>
+    Search Country: <input value={search} name="search" onChange={handleChange} />
+      {countriesToShow.map(country => { return <li>{country.name} {country.capital}</li>})}
+    </>
+  )
+} else {
+  return (
+    <div>
+      Search Country: <input value={search} name="search" onChange={handleChange} />
+    </div>
+  )
 }
-
+} 
 export default App;
